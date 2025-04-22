@@ -1,0 +1,22 @@
+{
+  "name": "map-pool-generator",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.3.1"
+  },
+  "dependencies": {
+    "@hello-pangea/dnd": "^18.0.1",
+    "fuse.js": "^7.1.0",
+    "html2canvas": "^1.4.1",
+    "pinyin": "^4.0.0-alpha.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}

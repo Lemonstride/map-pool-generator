@@ -1,0 +1,77 @@
+[
+  {
+    "name": "WKC 铃鹿赛道",
+    "img": "maps/WKC 铃鹿赛道.png",
+    "pinyin": "WKC linglusaidao"
+  },
+  {
+    "name": "亚瑟特城 潘德拉贡之城",
+    "img": "maps/亚瑟特城 潘德拉贡之城.png",
+    "pinyin": "yasetecheng pandelagongzhicheng"
+  },
+  {
+    "name": "侏罗纪 恐龙岛大冒险",
+    "img": "maps/侏罗纪 恐龙岛大冒险.png",
+    "pinyin": "zhuluoji konglongdaodamaoxian"
+  },
+  {
+    "name": "刀剑 云中峡谷",
+    "img": "maps/刀剑 云中峡谷.png",
+    "pinyin": "daojian yunzhongxiagu"
+  },
+  {
+    "name": "城镇 高速公路",
+    "img": "maps/城镇 高速公路.png",
+    "pinyin": "chengzhen gaosugonglu"
+  },
+  {
+    "name": "大城堡 秘密地下室",
+    "img": "maps/大城堡 秘密地下室.png",
+    "pinyin": "dachengbao mimidixiashi"
+  },
+  {
+    "name": "太空 蜿蜒跑道",
+    "img": "maps/太空 蜿蜒跑道.png",
+    "pinyin": "taikong wanyanpaodao"
+  },
+  {
+    "name": "奥林匹斯 宙斯城",
+    "img": "maps/奥林匹斯 宙斯城.png",
+    "pinyin": "aolinpisi zhousicheng"
+  },
+  {
+    "name": "月光之城 市厅广场",
+    "img": "maps/月光之城 市厅广场.png",
+    "pinyin": "yueguangzhicheng shitingguangchang"
+  },
+  {
+    "name": "未来工厂 神秘研究所",
+    "img": "maps/未来工厂 神秘研究所.png",
+    "pinyin": "weilaigongchang shenmiyanjiusuo"
+  },
+  {
+    "name": "森林 发夹",
+    "img": "maps/森林 发夹.png",
+    "pinyin": "senlin fajia"
+  },
+  {
+    "name": "洛谷 巴尔地下城",
+    "img": "maps/洛谷 巴尔地下城.png",
+    "pinyin": "luogu baerdixiacheng"
+  },
+  {
+    "name": "环游世界 意大利比萨斜塔",
+    "img": "maps/环游世界 意大利比萨斜塔.png",
+    "pinyin": "huanyoushijie yidalibisaxieta"
+  },
+  {
+    "name": "精灵 海底神殿",
+    "img": "maps/精灵 海底神殿.png",
+    "pinyin": "jingling haidishendian"
+  },
+  {
+    "name": "龙行华夏 武当山道之韵",
+    "img": "maps/龙行华夏 武当山道之韵.png",
+    "pinyin": "longxinghuaxia wudangshandaozhiyun"
+  }
+]
