@@ -4,12 +4,16 @@
       "source": "/maps/(.*)",
       "headers": [
         {
-          "key": "Referer",
-          "value": "https://mappoolgenerator.shop"
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://mappoolgenerator.shop https://map-pool-generator.vercel.app"
         },
         {
-          "key": "Access-Control-Allow-Origin",
-          "value": "https://mappoolgenerator.shop"
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; img-src https://mappoolgenerator.shop https://map-pool-generator.vercel.app;"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
         }
       ]
     }
