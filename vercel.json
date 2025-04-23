@@ -17,5 +17,18 @@
         }
       ]
     }
+  ],
+  "routes": [
+    {
+      "src": "/maps/(.*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "referer",
+          "value": "^(?!https://(www\\.)?mappoolgenerator\\.shop|https://map-pool-generator\\.vercel\\.app).*$"
+        }
+      ],
+      "status": 403
+    }
   ]
 }
