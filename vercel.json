@@ -1,0 +1,17 @@
+{
+  "headers": [
+    {
+      "source": "/maps/(.*)",
+      "headers": [
+        {
+          "key": "Referer",
+          "value": "https://mappoolgenerator.shop"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://mappoolgenerator.shop"
+        }
+      ]
+    }
+  ]
+}
