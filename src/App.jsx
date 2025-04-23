@@ -1,4 +1,3 @@
-// App.jsx
 import React, { useState } from 'react';
 import mapsData from './data/maps.json';
 import { MapCard } from './components/MapCard';
@@ -6,11 +5,13 @@ import { MapSearchBar } from './components/MapSearchBar';
 import html2canvas from 'html2canvas';
 
 export default function App() {
-    const [cols] = useState(5);
+    const [rows, setRows] = useState(3);
+    const [cols, setCols] = useState(5);
     const [grid, setGrid] = useState([]);
     const [selectedIndex, setSelectedIndex] = useState(null);
-    const [maxGridSize, setMaxGridSize] = useState(15);
     const [isDark, setIsDark] = useState(false);
+
+    const maxGridSize = rows * cols;
 
     const handleSelectMap = (map) => {
         if (grid.length >= maxGridSize) {
@@ -56,9 +57,9 @@ export default function App() {
             <div className="flex justify-between items-center">
                 <h1 className="text-2xl font-bold">图池生成器</h1>
                 <div className="flex items-center gap-4">
-    <span className="text-sm text-gray-500 dark:text-gray-400 hidden sm:inline">
-      -｜南山居客｜车队 西瓜卡 开发
-    </span>
+          <span className="text-sm text-gray-500 dark:text-gray-400 hidden sm:inline">
+            -｜南山居客｜车队 西瓜卡 开发
+          </span>
                     <button
                         onClick={() => setIsDark(!isDark)}
                         className="bg-indigo-500 text-white px-3 py-1 rounded"
@@ -68,15 +69,32 @@ export default function App() {
                 </div>
             </div>
 
-            <div className="flex items-center gap-2">
-                <label>图池上限：</label>
-                <input
-                    type="number"
-                    value={maxGridSize}
-                    onChange={(e) => setMaxGridSize(Number(e.target.value))}
-                    min={1}
-                    className={`border px-2 py-1 w-24 rounded outline-none ${isDark ? 'bg-gray-800 text-white border-gray-600' : 'bg-white text-black'}`}
-                />
+            <div className="flex flex-wrap items-center gap-4">
+                <div className="flex items-center gap-2">
+                    <label>列数：</label>
+                    <input
+                        type="number"
+                        value={cols}
+                        onChange={(e) => setCols(Number(e.target.value))}
+                        min={1}
+                        max={10}
+                        className="w-16 p-1 border rounded bg-white dark:bg-gray-800 dark:text-white dark:border-gray-600"
+                    />
+                </div>
+                <div className="flex items-center gap-2">
+                    <label>行数：</label>
+                    <input
+                        type="number"
+                        value={rows}
+                        onChange={(e) => setRows(Number(e.target.value))}
+                        min={1}
+                        max={10}
+                        className="w-16 p-1 border rounded bg-white dark:bg-gray-800 dark:text-white dark:border-gray-600"
+                    />
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                    当前图池：{rows} 行 × {cols} 列，共 {maxGridSize} 张图（已选 {grid.length}）
+                </p>
             </div>
 
             <MapSearchBar maps={mapsData} onSelect={handleSelectMap} />
@@ -92,7 +110,7 @@ export default function App() {
                 className="grid gap-1 p-2 rounded bg-white dark:bg-gray-800 transition-all"
                 style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}
             >
-                {grid.map((map, i) => (
+                {grid.slice(0, maxGridSize).map((map, i) => (
                     <div
                         key={i}
                         onClick={() => setSelectedIndex(i)}
