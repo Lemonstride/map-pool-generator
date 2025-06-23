@@ -165,6 +165,16 @@
     "pinyin": "[fan]yueguangzhichengxiaozhentielu"
   },
   {
+    "name": "[反]月光之城逃脱地铁",
+    "img": "maps/[反]月光之城逃脱地铁.png",
+    "pinyin": "[fan]yueguangzhichengtaotuoditie"
+  },
+  {
+    "name": "[反]月光之城都市风情",
+    "img": "maps/[反]月光之城都市风情.png",
+    "pinyin": "[fan]yueguangzhichengdushifengqing"
+  },
+  {
     "name": "[反]森林发夹",
     "img": "maps/[反]森林发夹.png",
     "pinyin": "[fan]senlinfajia"
@@ -258,6 +268,11 @@
     "name": "[反]龙行华夏龙之竞技场",
     "img": "maps/[反]龙行华夏龙之竞技场.png",
     "pinyin": "[fan]longxinghuaxialongzhijingjichang"
+  },
+  {
+    "name": "[反]龙行华夏龙之运河",
+    "img": "maps/[反]龙行华夏龙之运河.png",
+    "pinyin": "[fan]longxinghuaxialongzhiyunhe"
   },
   {
     "name": "[反]龙行华夏龙之遗迹",
@@ -1085,6 +1100,11 @@
     "pinyin": "haidaoxuanyunmatou"
   },
   {
+    "name": "海盗破裂海浪",
+    "img": "maps/海盗破裂海浪.png",
+    "pinyin": "haidaopoliehailang"
+  },
+  {
     "name": "海盗绝壁海湾",
     "img": "maps/海盗绝壁海湾.png",
     "pinyin": "haidaojuebihaiwan"
@@ -1548,11 +1568,6 @@
     "name": "龙行华夏龙之遗迹2",
     "img": "maps/龙行华夏龙之遗迹2.png",
     "pinyin": "longxinghuaxialongzhiyiji2"
-  },
-  {
-    "name": "海盗破裂海浪",
-    "img": "maps/海盗破裂海浪.png",
-    "pinyin": "haidaopoliehailang"
   },
   {
     "name": "龙行华夏龙之都市",
