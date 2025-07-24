@@ -765,6 +765,11 @@
     "pinyin": "aolinpisishendian"
   },
   {
+    "name": "封神传说堕仙居所",
+    "img": "maps/封神传说堕仙居所.png",
+    "pinyin": "fengshenchuanshuoduoxianjusuo"
+  },
+  {
     "name": "封神传说天地日月灵珠",
     "img": "maps/封神传说天地日月灵珠.png",
     "pinyin": "fengshenchuanshuotiandiriyuelingzhu"
@@ -773,6 +778,11 @@
     "name": "封神传说天外仙境",
     "img": "maps/封神传说天外仙境.png",
     "pinyin": "fengshenchuanshuotianwaixianjing"
+  },
+  {
+    "name": "封神传说蜘蛛巢穴",
+    "img": "maps/封神传说蜘蛛巢穴.png",
+    "pinyin": "fengshenchuanshuozhizhuchaoxue"
   },
   {
     "name": "封神传说阴阳岔路口",
