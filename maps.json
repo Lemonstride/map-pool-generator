@@ -270,6 +270,11 @@
     "pinyin": "[fan]longxinghuaxialongzhijingjichang"
   },
   {
+    "name": "[反]龙行华夏龙之西湖",
+    "img": "maps/[反]龙行华夏龙之西湖.png",
+    "pinyin": "[fan]longxinghuaxialongzhixihu"
+  },
+  {
     "name": "[反]龙行华夏龙之运河",
     "img": "maps/[反]龙行华夏龙之运河.png",
     "pinyin": "[fan]longxinghuaxialongzhiyunhe"
@@ -778,6 +783,11 @@
     "name": "封神传说天外仙境",
     "img": "maps/封神传说天外仙境.png",
     "pinyin": "fengshenchuanshuotianwaixianjing"
+  },
+  {
+    "name": "封神传说蛟龙藏身处",
+    "img": "maps/封神传说蛟龙藏身处.png",
+    "pinyin": "fengshenchuanshuojiaolongcangshenchu"
   },
   {
     "name": "封神传说蜘蛛巢穴",
