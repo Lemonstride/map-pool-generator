@@ -410,6 +410,11 @@
     "pinyin": "bingfengdezhidongzhuangzhi"
   },
   {
+    "name": "冰河企鹅小镇",
+    "img": "maps/冰河企鹅小镇.png",
+    "pinyin": "bingheqiexiaozhen"
+  },
+  {
     "name": "冰河冬季训练场",
     "img": "maps/冰河冬季训练场.png",
     "pinyin": "binghedongjixunlianchang"
@@ -448,6 +453,11 @@
     "name": "冰河极速",
     "img": "maps/冰河极速.png",
     "pinyin": "binghejisu"
+  },
+  {
+    "name": "冰河极限阿尔卑斯",
+    "img": "maps/冰河极限阿尔卑斯.png",
+    "pinyin": "binghejixianaerbeisi"
   },
   {
     "name": "冰河滑雪场",
@@ -1318,6 +1328,11 @@
     "name": "矿山盘旋电车轨道",
     "img": "maps/矿山盘旋电车轨道.png",
     "pinyin": "kuangshanpanxuandiancheguidao"
+  },
+  {
+    "name": "矿山矿物传送带",
+    "img": "maps/矿山矿物传送带.png",
+    "pinyin": "kuangshankuangwuchuansongdai"
   },
   {
     "name": "矿山矿物运输车始发站",
