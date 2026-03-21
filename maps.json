@@ -425,6 +425,11 @@
     "pinyin": "binghebingfengliegu"
   },
   {
+    "name": "冰河冰川尽途",
+    "img": "maps/冰河冰川尽途.png",
+    "pinyin": "binghebingchuanjintu"
+  },
+  {
     "name": "冰河冰水晶洞穴",
     "img": "maps/冰河冰水晶洞穴.png",
     "pinyin": "binghebingshuijingdongxue"
@@ -1520,6 +1525,11 @@
     "pinyin": "longxinghuaxiashanmingshuixiuzhidou"
   },
   {
+    "name": "龙行华夏无限峡谷20",
+    "img": "maps/龙行华夏无限峡谷20.png",
+    "pinyin": "longxinghuaxiawuxianxiagu20"
+  },
+  {
     "name": "龙行华夏日光城",
     "img": "maps/龙行华夏日光城.png",
     "pinyin": "longxinghuaxiariguangcheng"
@@ -1548,6 +1558,11 @@
     "name": "龙行华夏灯光璀璨之都",
     "img": "maps/龙行华夏灯光璀璨之都.png",
     "pinyin": "longxinghuaxiadengguangcuicanzhidou"
+  },
+  {
+    "name": "龙行华夏特别区域20",
+    "img": "maps/龙行华夏特别区域20.png",
+    "pinyin": "longxinghuaxiatebiequyu20"
   },
   {
     "name": "龙行华夏英雄圣祠",
