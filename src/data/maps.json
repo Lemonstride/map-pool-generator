@@ -1315,6 +1315,16 @@
     "pinyin": "kuangshanquzhehuapo"
   },
   {
+    "name": "矿山沸腾命运跳台",
+    "img": "maps/矿山沸腾命运跳台.png",
+    "pinyin": "kuangshanfeitengmingyuntiaotai"
+  },
+  {
+    "name": "矿山淘金热小镇",
+    "img": "maps/矿山淘金热小镇.png",
+    "pinyin": "kuangshantaojinrexiaozhen"
+  },
+  {
     "name": "矿山瀑布",
     "img": "maps/矿山瀑布.png",
     "pinyin": "kuangshanpubu"
@@ -1323,6 +1333,11 @@
     "name": "矿山熔岩小径",
     "img": "maps/矿山熔岩小径.png",
     "pinyin": "kuangshanrongyanxiaojing"
+  },
+  {
+    "name": "矿山熔岩翻涌",
+    "img": "maps/矿山熔岩翻涌.png",
+    "pinyin": "kuangshanrongyanfanyong"
   },
   {
     "name": "矿山狂奔的矿车",
