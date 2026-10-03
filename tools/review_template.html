@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>地图图片核对</title>
+<style>
+  *{box-sizing:border-box}body{margin:0;background:#f3f5f8;color:#192236;font:16px system-ui,sans-serif}
+  header{padding:24px;position:sticky;top:0;background:#ffffffed;border-bottom:1px solid #dfe4ec;z-index:1}
+  h1{margin:0 0 10px;font-size:24px}p{margin:8px 0;line-height:1.6;color:#4b5870}
+  button{border:0;border-radius:6px;padding:10px 16px;background:#294bc4;color:white;cursor:pointer}
+  main{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;padding:24px;max-width:1600px;margin:auto}
+  article{padding:14px;background:white;border:1px solid #dfe4ec;border-radius:10px}
+  article:has(input[type=checkbox]:checked){border-color:#21855b}
+  img{width:100%;height:auto;display:block;border-radius:4px}input[type=text]{width:100%;padding:9px;font:inherit;margin:8px 0;border:1px solid #b8c3d4;border-radius:5px}
+  label{display:block;margin-top:10px}small{display:block;color:#66738a;overflow-wrap:anywhere;margin:8px 0}
+  .issues{color:#a44713;font-size:14px;min-height:24px}.suggestion{background:#eef2ff;color:#294bc4;padding:6px 10px}
+  #status{margin-left:12px}#import{display:inline-block;margin:10px}
+</style>
+<header>
+  <h1>核对地图图片与名称</h1>
+  <p>逐张检查卡片，修改名称并勾选确认。下载核对表后，使用它同步到地图库。重复地图只确认要保留的一张。</p>
+  <button id="download">下载核对表</button><span id="status"></span>
+  <a id="export-link" hidden download="review.csv">重新下载已生成的核对表</a>
+  <details><summary>下载不成功时：复制核对表文本</summary><textarea id="csv-text" readonly aria-label="核对表文本" rows="8" style="width:100%"></textarea></details>
+  <label id="import">继续已有核对：<input id="file" type="file" accept=".csv"></label>
+  <p>请在刷新或关闭页面前下载核对表，以保存修改。</p>
+</header>
+<main id="cards"></main>
+<script>
+const data = __REVIEW_DATA__;
+const fields = ["id","ocr_name","confidence","suggestion","name","approved","issues"];
+const nodes = new Map();
+function text(tag, value, cls) { const n=document.createElement(tag); n.textContent=value; if(cls)n.className=cls; return n; }
+function count() { document.getElementById("status").textContent="已确认 "+[...nodes.values()].filter(n=>n.check.checked).length+" / "+data.length; }
+for(const item of data) {
+  const card=document.createElement("article");
+  const img=document.createElement("img"); img.src=item.image; img.alt=item.ocr_name||"待确认地图"; img.loading="lazy"; card.append(img);
+  card.append(text("small",item.source+" · 第 "+item.row+" 行、第 "+item.col+" 列"));
+  card.append(text("small","识别："+(item.ocr_name||"空")+" · 置信度 "+(item.confidence||"未运行")));
+  const nameLabel=text("label","地图名称");
+  const name=document.createElement("input"); name.type="text"; name.value=item.name; name.setAttribute("aria-label","地图名称 "+item.id); nameLabel.append(name); card.append(nameLabel);
+  if(item.suggestion && item.suggestion!==item.name) {
+    const b=text("button","使用候选："+item.suggestion,"suggestion"); b.onclick=()=>name.value=item.suggestion; card.append(b);
+  }
+  card.append(text("p",item.issues,"issues"));
+  const label=document.createElement("label"), check=document.createElement("input"); check.type="checkbox"; check.onchange=count;
+  label.append(check,document.createTextNode(" 图片与名称已确认")); card.append(label);
+  nodes.set(item.id,{name,check}); document.getElementById("cards").append(card);
+}
+function csvValue(value){return '"'+String(value??"").replaceAll('"','""')+'"';}
+document.getElementById("download").onclick=()=>{
+  const rows=data.map(item=>({...item,name:nodes.get(item.id).name.value,approved:String(nodes.get(item.id).check.checked)}));
+  const csv="\ufeff"+fields.join(",")+"\r\n"+rows.map(row=>fields.map(f=>csvValue(row[f])).join(",")).join("\r\n")+"\r\n";
+  document.getElementById("csv-text").value=csv;
+  const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
+  const link=document.getElementById("export-link");
+  if(link.dataset.previous)URL.revokeObjectURL(link.dataset.previous);
+  link.href=url;link.dataset.previous=url;link.hidden=false;link.click();
+};
+function parseCsv(value){
+  const rows=[]; let row=[],cell="",quoted=false;
+  value=value.replace(/^\ufeff/,"");
+  for(let i=0;i<value.length;i++){
+    const c=value[i];
+    if(c==='"'){if(quoted&&value[i+1]==='"'){cell+='"';i++;}else quoted=!quoted;}
+    else if(c===","&&!quoted){row.push(cell);cell="";}
+    else if((c==="\r"||c==="\n")&&!quoted){row.push(cell);if(row.some(Boolean))rows.push(row);row=[];cell="";if(c==="\r"&&value[i+1]==="\n")i++;}
+    else cell+=c;
+  }
+  if(quoted)throw new Error("核对表引号不完整");
+  if(cell||row.length){row.push(cell);rows.push(row);}
+  return rows;
+}
+document.getElementById("file").onchange=async event=>{
+  try{
+    const file=event.target.files[0];if(!file)return;
+    const [header,...rows]=parseCsv(await file.text());
+    const index=f=>header.indexOf(f);
+    if(["id","name","approved"].some(f=>index(f)<0))throw new Error("核对表缺少必要列");
+    const ids=rows.map(r=>r[index("id")]);
+    if(ids.length!==data.length||new Set(ids).size!==data.length||ids.some(id=>!nodes.has(id)))throw new Error("核对表与当前批次不匹配");
+    for(const row of rows){
+      const n=nodes.get(row[index("id")]);n.name.value=row[index("name")];n.check.checked=["true","yes","1"].includes(row[index("approved")].toLowerCase().trim());
+    }
+    count();
+  }catch(error){alert(error.message);}
+};
+count();
+</script>
+</html>

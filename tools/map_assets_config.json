@@ -1,0 +1,12 @@
+{
+  "reference_size": [1922, 1113],
+  "start": [480, 273],
+  "tile_size": [281, 196],
+  "gap": [10, 10],
+  "rows": 3,
+  "cols": 4,
+  "name_top_ratio": 0.84,
+  "name_border_inset": 3,
+  "confidence_threshold": 0.92,
+  "model_name": "PP-OCRv5_server_rec"
+}

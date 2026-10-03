@@ -1,21 +1,9 @@
 {
-  "headers": [
-    {
-      "source": "/maps/(.*)",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "https://mappoolgenerator.shop https://map-pool-generator.vercel.app"
-        },
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self'; img-src https://mappoolgenerator.shop https://map-pool-generator.vercel.app;"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        }
-      ]
-    }
-  ]
+  "headers": [{
+    "source": "/(.*)",
+    "headers": [
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" }
+    ]
+  }]
 }

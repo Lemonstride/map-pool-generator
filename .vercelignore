@@ -1,0 +1,11 @@
+.conda/
+.cache/
+work/
+outputs/
+preProcessMap/
+preProcessMap.zip
+tools/
+tests/
+environment.yml
+.vscode/
+**/__pycache__/

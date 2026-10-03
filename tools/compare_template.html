@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>地图新旧贴图对比</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f6f8;color:#1d2939;font:15px system-ui,sans-serif}
+header,main{max-width:1360px;margin:auto;padding:24px}header{padding-bottom:12px}
+h1{font-size:28px;margin:0 0 10px}p{line-height:1.7;color:#526174;margin:8px 0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}
+.stat{padding:14px 18px;border:1px solid #dce2ea;border-radius:10px;background:white}.stat b{font-size:28px;display:block;color:#263b75}.stat span{font-size:13px;color:#526174}
+.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center}input,select{font:inherit;padding:10px;border:1px solid #b8c3d4;border-radius:7px;background:white}input{flex:1;min-width:220px}a{color:#294bc4}
+main{padding-top:12px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+article{min-width:0;border:1px solid #dce2ea;border-radius:12px;background:white;padding:18px}
+h2{font-size:18px;margin:0 0 8px}.tag{font-size:12px;color:#2844a0;background:#edf2ff;display:inline-block;padding:4px 8px;border-radius:5px;margin-bottom:12px}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}figure{margin:0}figcaption{font-size:13px;margin-bottom:6px;color:#526174}img{width:100%;height:auto;display:block;border:1px solid #dce2ea}.empty{aspect-ratio:281/196;display:grid;place-items:center;background:#f2f4f8;color:#66758a}
+small{display:block;margin-top:10px;color:#748095;overflow-wrap:anywhere}.meta{font-size:13px}.note{min-height:24px;font-size:13px}.rename{color:#8e501b}#result{font-size:14px;color:#526174}
+@media(max-width:900px){.cards{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:450px){header,main{padding:16px}h1{font-size:24px}article{padding:12px}.pair{gap:8px}}
+</style>
+<header>
+<h1>地图新旧贴图对比</h1>
+<p>左侧为更新前网站图片，右侧为本批全量截图。可搜索地图名称、按变化类型筛选。</p>
+<p>“地图预览变化”包括场景、视角、色彩以及赛道路线图的变化；仅凭截图无法确定游戏内部的贴图资源是否更换。VS、AI、收藏星标和难度栏的差异单独列出。</p>
+<div class="stats" id="stats"></div>
+<div class="controls"><label for="category">变化类型</label><select id="category" aria-label="变化类型">
+<option value="preview_changed">地图预览变化</option><option value="ui_only">仅标记／界面变化</option><option value="new">新增地图</option><option value="renamed">名称修正</option><option value="unchanged">像素相同</option><option value="different">全部图片差异</option><option value="all">全部地图</option>
+</select><input id="search" type="search" aria-label="搜索地图" placeholder="输入地图名称，例如：冰河、矿山、城镇"><a href="map-changes.csv" download>下载完整清单 CSV</a></div>
+<p id="coverage"></p><span id="result" role="status" aria-live="polite"></span>
+</header>
+<main><div class="cards" id="cards"></div></main>
+<script>
+const report=__REPORT_DATA__;
+const labels={preview_changed:'地图预览变化',ui_only:'仅标记／界面变化',new:'新增地图',unchanged:'像素相同'};
+function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;}
+for(const key of ['preview_changed','ui_only','new','unchanged']){const n=el('div',undefined,'stat');n.append(el('b',String(report.summary[key]||0)),el('span',labels[key]));document.getElementById('stats').append(n);}
+document.getElementById('coverage').textContent=`旧库 ${report.current_maps} 张 → 本批 ${report.confirmed_maps} 张有效地图；${report.empty_positions} 个空位置；修正 ${Object.keys(report.renames).length} 个旧名称；未覆盖旧地图 ${report.not_covered.length} 张。`;
+function figure(src,label){const f=el('figure');f.append(el('figcaption',label));if(src){const img=document.createElement('img');img.src=src;img.alt=label;img.loading='lazy';img.width=281;img.height=196;f.append(img);}else f.append(el('div','旧库中没有此地图','empty'));return f;}
+function render(){
+const category=document.getElementById('category').value,q=document.getElementById('search').value.trim().toLowerCase();
+const rows=report.items.filter(r=>(category==='all'||(category==='different'&&['preview_changed','ui_only'].includes(r.category))||(category==='renamed'&&r.old_name&&r.old_name!==r.name)||r.category===category)&&(!q||(r.name+' '+r.old_name).toLowerCase().includes(q)));
+const cards=document.getElementById('cards');cards.replaceChildren();
+document.getElementById('result').textContent=`显示 ${rows.length} 张地图`;
+for(const r of rows){const card=el('article');card.append(el('h2',r.name),el('span',labels[r.category],'tag'));
+if(r.old_name&&r.old_name!==r.name)card.append(el('p','旧名称：'+r.old_name+' → '+r.name,'meta rename'));
+const pair=el('div',undefined,'pair');pair.append(figure(r.old_image,'旧图 · '+(r.old_name||'无')),figure(r.new_image,'新图 · '+r.name));card.append(pair);
+card.append(el('p',r.note||'','note'),el('small',`${r.source} · 第 ${r.row} 行、第 ${r.col} 列${r.visually_reviewed?' · 已逐图核对':' · 待视觉核对'}`));cards.append(card);}
+}
+document.getElementById('category').onchange=render;document.getElementById('search').oninput=render;render();
+</script>
+</html>
