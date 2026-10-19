@@ -2050,5 +2050,23 @@
     "img": "maps/冰河未完成斜坡.png",
     "pinyin": "bingheweiwanchengxiepo",
     "oldImg": null
+  },
+  {
+    "name": "墓地弗兰肯发电厂",
+    "img": "maps/墓地弗兰肯发电厂.png",
+    "pinyin": "mudifulankenfadianchang",
+    "oldImg": null
+  },
+  {
+    "name": "墓地亡者地狱之路",
+    "img": "maps/墓地亡者地狱之路.png",
+    "pinyin": "mudiwangzhediyuzhilu",
+    "oldImg": null
+  },
+  {
+    "name": "墓地魔王的瞭望塔",
+    "img": "maps/墓地魔王的瞭望塔.png",
+    "pinyin": "mudimowangdeliaowangta",
+    "oldImg": null
   }
 ]
